@@ -2,13 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Dashboard/Header";
 import { authUserSession } from "@/libs/auth-libs";
+import prisma from "@/libs/prisma";
 
 const Page = async () => {
   const user = await authUserSession();
   const collection = await prisma.collection.findMany({where: {user_email: user.email}});
 
-  console.log({collection});
-  
 
   return (
     <section className="mt-4 px-4 w-full">
